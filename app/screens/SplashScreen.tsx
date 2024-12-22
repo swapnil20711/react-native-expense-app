@@ -1,9 +1,10 @@
 import { View, Text, Image } from 'react-native'
 import React, { useEffect } from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const SplashScreen = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const isLoggedIn = false;
 
     useEffect(() => {

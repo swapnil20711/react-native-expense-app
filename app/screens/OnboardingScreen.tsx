@@ -4,7 +4,8 @@ import { FlatList } from 'react-native';
 import CaruselItem from '../components/CarouselItem';
 import { CarouselDataProps } from '../types/CaruselDataProps';
 import { Button } from 'react-native-paper';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { ParamListBase, useFocusEffect, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const OnboardingScreen = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -29,7 +30,7 @@ const OnboardingScreen = () => {
     }
   ]
   const flatlistRef = useRef<FlatList>(null)
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   useEffect(() => {
     if (selectedIndex < onboardingData.length) {
