@@ -96,7 +96,7 @@ const OnboardingScreen = () => {
         <Button
           textColor='#7F3DFF'
           onPress={() => {
-            navigation.navigate("MainApp")
+            navigation.navigate("Login")
           }}
           mode='contained-tonal'
           style={{ marginHorizontal: 20, marginTop: 16, borderRadius: 16, backgroundColor: "#EEE5FF" }}>Login</Button>
