@@ -1,10 +1,16 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
+import LinearGradient from 'react-native-linear-gradient'
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text>HomeScreen</Text>
+    <View style={{ flex: 1, backgroundColor: "white" }}>
+      <LinearGradient
+        colors={['#FFF6E5', '#F8EDD840']}
+        style={{ flex: 0.3, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 }}>
+
+      </LinearGradient>
+
     </View>
   )
 }

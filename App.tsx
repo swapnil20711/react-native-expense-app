@@ -18,9 +18,6 @@ import TabNavigation from './app/navigation/TabNavigation';
 
 
 function App(): React.JSX.Element {
-  const backgroundStyle = {
-    flex: 1,
-  };
   const Stack = createNativeStackNavigator();
 
   return (
