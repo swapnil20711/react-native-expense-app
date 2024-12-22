@@ -1,5 +1,6 @@
 import { View, Text, FlatList, Dimensions, TouchableOpacity, Platform } from 'react-native'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Colors } from '../colors';
 
 const SetupPinScreen = () => {
     const array = useMemo(() => {
@@ -26,7 +27,7 @@ const SetupPinScreen = () => {
     );
 
     return (
-        <View style={{ flex: 1, justifyContent: "space-around", backgroundColor: "#7F3DFF" }}>
+        <View style={{ flex: 1, justifyContent: "space-around", backgroundColor: Colors.primaryColor }}>
             <View style={{ position: "absolute", top: 0, left: 0, right: 0, height: '40%', marginTop: 46 }}>
                 <Text style={{ color: 'white', fontWeight: "bold", textAlign: 'center' }}>Let's setup your PIN</Text>
                 <View style={{ flexDirection: 'row', justifyContent: "center", marginTop: '20%' }}>

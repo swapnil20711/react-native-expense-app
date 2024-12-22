@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React, { useState } from 'react'
 import { Checkbox } from 'react-native-paper'
 import TextInputComponent from '../components/TextInputComponent';
+import { Colors } from '../colors';
 
 const SignupScreen = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -53,10 +54,10 @@ const SignupScreen = () => {
       <View style={{ flexDirection: "row", marginTop: 16 }}>
         <Checkbox.Android
           style={{ marginEnd: 10 }}
-          color='#7F3DFF'
+          color={Colors.primaryColor}
           status={isChecked ? 'checked' : 'unchecked'}
           onPress={() => { setIsChecked(!isChecked) }} ></Checkbox.Android>
-        <Text style={{ flexShrink: 1 }}>By signing up, you agree to the <Text style={{ color: "#7F3DFF", fontWeight: "500" }}>Terms of Service and Privacy Policy</Text></Text>
+        <Text style={{ flexShrink: 1 }}>By signing up, you agree to the <Text style={{ color: Colors.primaryColor, fontWeight: "500" }}>Terms of Service and Privacy Policy</Text></Text>
       </View>
     </View>
   )

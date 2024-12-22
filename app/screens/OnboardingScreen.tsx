@@ -6,6 +6,7 @@ import { CarouselDataProps } from '../types/CaruselDataProps';
 import { Button } from 'react-native-paper';
 import { ParamListBase, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import  {Colors} from '../colors'
 
 const OnboardingScreen = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -81,7 +82,7 @@ const OnboardingScreen = () => {
                   width: index === selectedIndex ? 16 : 8,
                   height: index === selectedIndex ? 16 : 8,
                   borderRadius: index === selectedIndex ? 8 : 4,
-                  backgroundColor: index === selectedIndex ? "#7F3DFF" : "#EEE5FF",
+                  backgroundColor: index === selectedIndex ? Colors.primaryColor : "#EEE5FF",
                   marginHorizontal: 8
                 }} />
             )
@@ -92,9 +93,9 @@ const OnboardingScreen = () => {
             setSelectedIndex((prevIndex) => prevIndex + 1)
           }}
           mode='contained'
-          style={{ marginHorizontal: 20, marginTop: 30, borderRadius: 16, backgroundColor: "#7F3DFF" }}>Signup</Button>
+          style={{ marginHorizontal: 20, marginTop: 30, borderRadius: 16, backgroundColor: Colors.primaryColor }}>Signup</Button>
         <Button
-          textColor='#7F3DFF'
+          textColor={Colors.primaryColor}
           onPress={() => {
             navigation.navigate("Login")
           }}

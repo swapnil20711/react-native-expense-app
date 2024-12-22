@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import TextInputComponent from '../components/TextInputComponent';
 import { Button } from 'react-native-paper';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
-
+import {Colors} from '../colors'
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,10 +42,10 @@ const LoginScreen = () => {
           navigation.navigate("MainApp")
         }}
         mode='contained'
-        style={{ marginTop: 30, borderRadius: 16, backgroundColor: "#7F3DFF" }}>Login</Button>
+        style={{ marginTop: 30, borderRadius: 16, backgroundColor: Colors.primaryColor }}>Login</Button>
 
       <TouchableOpacity style={{ marginTop: 32, alignItems: 'center' }}>
-        <Text style={{ color: "#7F3DFF", fontWeight: 'bold' }}>Forgot Password?</Text>
+        <Text style={{ color: Colors.primaryColor, fontWeight: 'bold' }}>Forgot Password?</Text>
       </TouchableOpacity>
 
       <View style={{ marginTop: 32, flexDirection: 'row' }}>
@@ -55,7 +55,7 @@ const LoginScreen = () => {
         <TouchableOpacity onPress={() => {
           navigation.navigate("Signup")
         }} style={{ flex: 1 }}>
-          <Text style={{ color: "#7F3DFF", fontWeight: 'bold', textAlign: 'left', marginStart: 4 }}> Sign Up</Text></TouchableOpacity>
+          <Text style={{ color: Colors.primaryColor, fontWeight: 'bold', textAlign: 'left', marginStart: 4 }}> Sign Up</Text></TouchableOpacity>
       </View>
     </View>
   )

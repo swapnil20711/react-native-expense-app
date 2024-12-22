@@ -1,9 +1,11 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import SettingsIcon from 'react-native-vector-icons/Feather'
+import { Image, TouchableOpacity } from 'react-native';
+import TransactionScreen from '../screens/TransactionScreen';
+import BudgetScreen from '../screens/BudgetScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import { Colors } from '../colors';
 
 const TabNavigation = () => {
     const Tab = createBottomTabNavigator();
@@ -12,18 +14,47 @@ const TabNavigation = () => {
             <Tab.Screen
                 name='Home'
                 component={HomeScreen} options={{
-                    tabBarIcon: ({ size, focused }) => (
-                        <Icon name='home' size={size} color={focused ? "blue" : "black"} />
+                    tabBarIcon: ({ focused }) => (
+                        <Image tintColor={focused ? Colors.primaryColor : ""} style={{ width: 32, height: 32 }} source={require("../assets/home.png")} />
                     ),
-                    tabBarActiveTintColor: "blue",
+                    tabBarActiveTintColor: Colors.primaryColor,
                     headerShown: false,
                 }}></Tab.Screen>
             <Tab.Screen
-                name='Setting'
-                component={SettingsScreen} options={{
-                    tabBarActiveTintColor: "blue",
-                    tabBarIcon: ({ focused, size }) => (
-                        <SettingsIcon name='settings' size={size} color={focused ? "blue" : "black"} />
+                name='Transaction'
+                component={TransactionScreen} options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image tintColor={focused ? Colors.primaryColor : ""} style={{ width: 32, height: 32 }} source={require("../assets/transaction.png")} />
+                    ),
+                    tabBarActiveTintColor: Colors.primaryColor,
+                    headerShown: false,
+                }}></Tab.Screen>
+            <Tab.Screen
+                name='Add'
+                component={HomeScreen} options={{
+                    tabBarIcon: () => (
+                        <TouchableOpacity>
+                            <Image style={{ width: 56, height: 56, top: -15 }} source={require("../assets/add_button.png")} />
+                        </TouchableOpacity>
+                    ),
+                    headerShown: false,
+                    title: ""
+                }}></Tab.Screen>
+            <Tab.Screen
+                name='Budget'
+                component={BudgetScreen} options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image tintColor={focused ? Colors.primaryColor : ""} style={{ width: 32, height: 32 }} source={require("../assets/pie-chart.png")} />
+                    ),
+                    tabBarActiveTintColor: Colors.primaryColor,
+                    headerShown: false,
+                }}></Tab.Screen>
+            <Tab.Screen
+                name='Profile'
+                component={ProfileScreen} options={{
+                    tabBarActiveTintColor: Colors.primaryColor,
+                    tabBarIcon: ({ focused }) => (
+                        <Image tintColor={focused ? Colors.primaryColor : ""} style={{ width: 32, height: 32 }} source={require("../assets/user.png")} />
                     ),
                     headerShown: false
                 }}></Tab.Screen>
