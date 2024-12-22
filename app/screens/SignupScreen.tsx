@@ -1,40 +1,54 @@
 import { View, Text } from 'react-native'
 import React, { useState } from 'react'
-import { Checkbox, Icon, TextInput } from 'react-native-paper'
+import { Checkbox } from 'react-native-paper'
+import TextInputComponent from '../components/TextInputComponent';
 
 const SignupScreen = () => {
-  const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <View style={{ backgroundColor: 'white', flex: 1, paddingHorizontal: 16, paddingTop: 36 }}>
-      <TextInput
+      <TextInputComponent
         mode='outlined'
         outlineStyle={{ borderRadius: 16 }}
         outlineColor='#F1F1FA'
         placeholder='Swapnil'
         label={'Name'}
         style={{ backgroundColor: 'white' }}
-      />
-      <TextInput
+        onChangeText={(text) => {
+          setName(text);
+        }}
+        value={name}
+        inputMode={"text"} />
+        
+      <TextInputComponent
         mode='outlined'
         outlineStyle={{ borderRadius: 16 }}
         outlineColor='#F1F1FA'
         placeholder='swapnil.bhojwani@gmail.com'
         label={'Email'}
-        style={{ backgroundColor: 'white', marginTop: 24 }}
-      />
-      <TextInput
+        style={{ marginTop: 24 }}
+        onChangeText={(text) => {
+          setEmail(text)
+        }}
+        value={email}
+        inputMode={"email"} />
+
+      <TextInputComponent
         mode='outlined'
-        secureTextEntry={!isPasswordShown}
+        secureTextEntry={true}
         outlineStyle={{ borderRadius: 16 }}
         outlineColor='#F1F1FA'
         label={'Password'}
-        right={
-          <TextInput.Icon onPress={() => {
-            setIsPasswordShown(!isPasswordShown)
-          }} icon={isPasswordShown ? "eye" : "eye-off"} />}
-        style={{ backgroundColor: 'white', marginTop: 24 }}
-      />
+        style={{ marginTop: 24 }}
+        value={password}
+        placeholder={undefined}
+        onChangeText={(text) => {
+          setPassword(text)
+        }}
+        inputMode={"text"} />
 
       <View style={{ flexDirection: "row", marginTop: 16 }}>
         <Checkbox.Android
