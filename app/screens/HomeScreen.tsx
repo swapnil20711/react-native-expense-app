@@ -7,7 +7,13 @@ const HomeScreen = () => {
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <LinearGradient
         colors={['#FFF6E5', '#F8EDD840']}
-        style={{ flex: 0.3, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 }}>
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={{
+          flex: 0.3,
+          borderBottomLeftRadius: 32,
+          borderBottomRightRadius: 32,
+        }}>
 
       </LinearGradient>
 

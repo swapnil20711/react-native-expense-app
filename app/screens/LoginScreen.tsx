@@ -4,6 +4,7 @@ import TextInputComponent from '../components/TextInputComponent';
 import { Button } from 'react-native-paper';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 import {Colors} from '../colors'
+import { Routes } from '.';
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +54,7 @@ const LoginScreen = () => {
           Don’t have an account yet?
         </Text>
         <TouchableOpacity onPress={() => {
-          navigation.navigate("Signup")
+          navigation.navigate(Routes.SignupScreen.toString())
         }} style={{ flex: 1 }}>
           <Text style={{ color: Colors.primaryColor, fontWeight: 'bold', textAlign: 'left', marginStart: 4 }}> Sign Up</Text></TouchableOpacity>
       </View>

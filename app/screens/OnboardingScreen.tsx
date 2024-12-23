@@ -7,6 +7,7 @@ import { Button } from 'react-native-paper';
 import { ParamListBase, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import  {Colors} from '../colors'
+import { Routes } from '.';
 
 const OnboardingScreen = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -37,7 +38,7 @@ const OnboardingScreen = () => {
     if (selectedIndex < onboardingData.length) {
       flatlistRef?.current?.scrollToIndex({ animated: true, index: selectedIndex })
     } else {
-      navigation.navigate("Signup")
+      navigation.navigate(Routes.SignupScreen.toString())
     }
   }, [selectedIndex])
 
@@ -97,7 +98,7 @@ const OnboardingScreen = () => {
         <Button
           textColor={Colors.primaryColor}
           onPress={() => {
-            navigation.navigate("Login")
+            navigation.navigate(Routes.LoginScreen.toString())
           }}
           mode='contained-tonal'
           style={{ marginHorizontal: 20, marginTop: 16, borderRadius: 16, backgroundColor: "#EEE5FF" }}>Login</Button>

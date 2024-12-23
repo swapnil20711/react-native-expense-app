@@ -1,11 +1,14 @@
 import { View, Text, TouchableOpacity, Platform } from 'react-native'
 import React from 'react'
-import { Divider, Icon } from 'react-native-paper';
+import { Icon } from 'react-native-paper';
 import { AppHeaderProps } from '../types/AppHeaderProps';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const AppHeader: React.FC<AppHeaderProps> = ({ navigation, title }) => {
+    const insets = useSafeAreaInsets();
     return (
         <View style={{
+            paddingTop: insets.top,
             flexDirection: 'column',
             ...Platform.select({
                 ios: {

@@ -21,7 +21,6 @@ function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator initialRouteName='Splash'>
@@ -31,7 +30,6 @@ function App(): React.JSX.Element {
           </Stack.Navigator>
         </NavigationContainer>
       </KeyboardAvoidingView>
-    </SafeAreaView>
   );
 }
 

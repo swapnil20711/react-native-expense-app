@@ -6,14 +6,17 @@ import TransactionScreen from '../screens/TransactionScreen';
 import BudgetScreen from '../screens/BudgetScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import { Colors } from '../colors';
+import { Routes } from '../screens';
+import withSafeArea from '../components/withSafeArea';
 
 const TabNavigation = () => {
     const Tab = createBottomTabNavigator();
     return (
         <Tab.Navigator>
             <Tab.Screen
-                name='Home'
-                component={HomeScreen} options={{
+                name={Routes.HomeScreen.toString()}
+                component={withSafeArea(HomeScreen)} 
+                options={{
                     tabBarIcon: ({ focused }) => (
                         <Image tintColor={focused ? Colors.primaryColor : ""} style={{ width: 32, height: 32 }} source={require("../assets/home.png")} />
                     ),
@@ -21,8 +24,9 @@ const TabNavigation = () => {
                     headerShown: false,
                 }}></Tab.Screen>
             <Tab.Screen
-                name='Transaction'
-                component={TransactionScreen} options={{
+                name={Routes.TransactionScreen.toString()}
+                component={withSafeArea(TransactionScreen)}
+                options={{
                     tabBarIcon: ({ focused }) => (
                         <Image tintColor={focused ? Colors.primaryColor : ""} style={{ width: 32, height: 32 }} source={require("../assets/transaction.png")} />
                     ),
@@ -31,7 +35,8 @@ const TabNavigation = () => {
                 }}></Tab.Screen>
             <Tab.Screen
                 name='Add'
-                component={HomeScreen} options={{
+                component={withSafeArea(HomeScreen)}
+                options={{
                     tabBarIcon: () => (
                         <TouchableOpacity>
                             <Image style={{ width: 56, height: 56, top: -15 }} source={require("../assets/add_button.png")} />
@@ -41,8 +46,9 @@ const TabNavigation = () => {
                     title: ""
                 }}></Tab.Screen>
             <Tab.Screen
-                name='Budget'
-                component={BudgetScreen} options={{
+                name={Routes.BudgetScreen.toString()}
+                component={withSafeArea(BudgetScreen)}
+                options={{
                     tabBarIcon: ({ focused }) => (
                         <Image tintColor={focused ? Colors.primaryColor : ""} style={{ width: 32, height: 32 }} source={require("../assets/pie-chart.png")} />
                     ),
@@ -50,8 +56,9 @@ const TabNavigation = () => {
                     headerShown: false,
                 }}></Tab.Screen>
             <Tab.Screen
-                name='Profile'
-                component={ProfileScreen} options={{
+                name={Routes.ProfileScreen.toString()}
+                component={withSafeArea(ProfileScreen)}
+                options={{
                     tabBarActiveTintColor: Colors.primaryColor,
                     tabBarIcon: ({ focused }) => (
                         <Image tintColor={focused ? Colors.primaryColor : ""} style={{ width: 32, height: 32 }} source={require("../assets/user.png")} />

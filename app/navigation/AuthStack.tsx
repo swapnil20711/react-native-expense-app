@@ -5,17 +5,16 @@ import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import AppHeader from '../components/AppHeader';
 import SetupPinScreen from '../screens/SetupPinScreen';
+import { Routes } from '../screens';
 
 const AuthStack = () => {
     const Stack = createNativeStackNavigator();
 
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Onboard">
-            <Stack.Screen name="Onboard" component={OnboardingScreen} />
-            <Stack.Screen name="SetupPin" component={SetupPinScreen} options={{
-                statusBarBackgroundColor:"reds"
-            }}/>
-            <Stack.Screen name="Login" component={LoginScreen}
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={Routes.OnboardingScreen.toString()}>
+            <Stack.Screen name={Routes.OnboardingScreen.toString()} component={OnboardingScreen} />
+            <Stack.Screen name={Routes.SetupPinScreen.toString()} component={SetupPinScreen}/>
+            <Stack.Screen name={Routes.LoginScreen.toString()} component={LoginScreen}
                 options={({ navigation }) => ({
                     headerShown: true,
                     header: () => (
@@ -23,7 +22,7 @@ const AuthStack = () => {
                     ),
                 })} />
             <Stack.Screen
-                name="Signup"
+                name={Routes.SignupScreen.toString()}
                 component={SignupScreen}
                 options={({ navigation }) => ({
                     headerShown: true,
