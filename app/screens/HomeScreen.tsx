@@ -1,8 +1,11 @@
 import { View } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient'
+import HomeAppBar from '../components/HomeAppBar'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const HomeScreen = () => {
+  const insets = useSafeAreaInsets();
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <LinearGradient
@@ -16,6 +19,9 @@ const HomeScreen = () => {
         }}>
 
       </LinearGradient>
+      <View style={{ top: insets.top ,position:"absolute",left:0,right:0}}>
+        <HomeAppBar />
+      </View>
 
     </View>
   )
