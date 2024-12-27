@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         paddingHorizontal: 16,
         alignItems: "center",
-        flex: 1
+        flex: 1,
+        marginTop:8
     },
     avatarContainerStyle:{
         borderRadius: 22, 
