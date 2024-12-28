@@ -1,5 +1,5 @@
 import { Dimensions, Image, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import HomeAppBar from '../components/HomeAppBar'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -7,12 +7,14 @@ import { Text } from 'react-native-paper'
 import ExpenseCardView from '../components/ExpenseCardView'
 import { LineChart } from "react-native-gifted-charts";
 import { Colors } from '../colors'
+import useAccountStore from '../hooks/useAccountStore'
 
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const screenHeight = Dimensions.get('window').height;
   const data = [{ value: 10 }, { value: 10 }, { value: 10 }, { value: 20 }, { value: 30 }, { value: 20 }, { value: 70 }, { value: 20 }, { value: 15 }, { value: 15 }]
+  const { balance, income, expenses } = useAccountStore();
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <LinearGradient
@@ -29,12 +31,12 @@ const HomeScreen = () => {
           <View style={{ marginTop: 16, marginStart: 60, marginEnd: 40 }}>
             <View style={{ alignItems: 'center' }}>
               <Text style={{ color: "#91919F", fontSize: 16, marginStart: 8 }}>Account Balance</Text>
-              <Text style={{ fontSize: 28 }}>₹9400</Text>
+              <Text style={{ fontSize: 28 }}>₹{balance}</Text>
             </View>
           </View>
           <View style={{ flexDirection: "row", height: "80%", justifyContent: "space-evenly" }}>
-            <ExpenseCardView expenseType="income" cardBackgroundColor='#00A86B' title='Income' amount={5000} />
-            <ExpenseCardView expenseType="expense" cardBackgroundColor='#FD3C4A' title='Expenses' amount={1200} />
+            <ExpenseCardView expenseType="income" cardBackgroundColor='#00A86B' title='Income' amount={income} />
+            <ExpenseCardView expenseType="expense" cardBackgroundColor='#FD3C4A' title='Expenses' amount={expenses} />
           </View>
         </View>
       </LinearGradient>
