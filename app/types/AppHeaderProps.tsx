@@ -3,5 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 
 export type AppHeaderProps = {
     title: string,
-    navigation: NativeStackNavigationProp<ParamListBase, string, undefined>
+    navigation: NativeStackNavigationProp<ParamListBase, string, undefined>,
+    color?:string
+    iconAndTextColor?:string
 }

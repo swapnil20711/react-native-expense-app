@@ -18,6 +18,8 @@ import TabNavigation from './app/navigation/TabNavigation';
 import { Routes } from './app/screens';
 import AppHeader from './app/components/AppHeader';
 import AddExpenseScreen from './app/screens/AddExpenseScreen';
+import { Colors } from './app/colors';
+import AddIncomeScreen from './app/screens/AddIncomeScreen';
 
 
 function App(): React.JSX.Element {
@@ -30,11 +32,26 @@ function App(): React.JSX.Element {
           <Stack.Screen name='Splash' component={SplashScreen} options={{ headerShown: false }} />
           <Stack.Screen name='MainApp' component={TabNavigation} options={{ headerShown: false }} />
           <Stack.Screen name='AuthStack' component={AuthStack} options={{ headerShown: false }} />
+          <Stack.Screen name={Routes.IncomeScreen.toString()} component={AddIncomeScreen}
+            options={({ navigation }) => ({
+              headerShown: true,
+              header: () => (
+                <AppHeader
+                  navigation={navigation}
+                  title={'Income'}
+                  color={Colors.green}
+                  iconAndTextColor='#fff' />
+              ),
+            })} />
           <Stack.Screen name={Routes.ExpenseScreen.toString()} component={AddExpenseScreen}
             options={({ navigation }) => ({
               headerShown: true,
               header: () => (
-                <AppHeader navigation={navigation} title={'Expense'} />
+                <AppHeader
+                  navigation={navigation}
+                  title={'Expense'}
+                  color={Colors.red}
+                  iconAndTextColor='#fff' />
               ),
             })} />
         </Stack.Navigator>
