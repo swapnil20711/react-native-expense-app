@@ -14,21 +14,22 @@ const AppHeader: React.FC<AppHeaderProps> = ({ navigation, title, color, iconAnd
             paddingTop: insets.top,
             flexDirection: 'column',
             backgroundColor,
-            ...Platform.select({
-                ios: {
-                    shadowColor: 'rgba(0, 0, 0, 1)',
-                    shadowOpacity: 0.2,
-                    shadowRadius: 2,
-                    shadowOffset: {
-                        height: 1,
-                        width: 0,
-                    },
-                },
-                android: {
-                    elevation: 8,
-                    backgroundColor: 'rgba(0, 0, 0, 1)',
-                },
-            }),
+            //     ...Platform.select({
+            //         ios: {
+            //             shadowColor: 'rgba(0, 0, 0, 1)',
+            //             shadowOpacity: 0.2,
+            //             shadowRadius: 2,
+            //             shadowOffset: {
+            //                 height: 1,
+            //                 width: 0,
+            //             },
+            //         },
+            //         android: {
+            //             elevation: 8,
+            //             backgroundColor: 'rgba(0, 0, 0, 1)',
+            //         },
+            //     }
+            // ),
         }}>
             <View style={{ flexDirection: 'row', padding: 8, backgroundColor, alignItems: 'center' }}>
                 <TouchableOpacity
