@@ -35,8 +35,8 @@ const HomeScreen = () => {
             </View>
           </View>
           <View style={{ flexDirection: "row", height: "80%", justifyContent: "space-evenly" }}>
-            <ExpenseCardView expenseType="income" cardBackgroundColor='#00A86B' title='Income' amount={income} />
-            <ExpenseCardView expenseType="expense" cardBackgroundColor='#FD3C4A' title='Expenses' amount={expenses} />
+            <ExpenseCardView expenseType="income" cardBackgroundColor={Colors.green} title='Income' amount={income} />
+            <ExpenseCardView expenseType="expense" cardBackgroundColor={Colors.red} title='Expenses' amount={expenses} />
           </View>
         </View>
       </LinearGradient>
