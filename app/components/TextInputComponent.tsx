@@ -64,20 +64,22 @@ const TextInputComponent: FC<TextInputComponentProps> = (props) => {
                     outlineStyle={props.outlineStyle}
                     secureTextEntry={secureTextEntry}
                     contentStyle={{ textAlign: 'auto' }}
-                    style={[{ flex: 1 ,backgroundColor:"white"}]}
+                    style={[{ flex: 1, backgroundColor: "white" }]}
                     onChangeText={(text) => props.onChangeText?.(text)}
                     right={
-                        props.secureTextEntry !== undefined && (
+                        props.secureTextEntry !== undefined ? (
                             <TextInput.Icon
                                 icon={secureTextEntry ? 'eye' : 'eye-off'}
                                 onPress={() => {
                                     setSecureTextEntry(!secureTextEntry)
                                 }}
                             />
-                        )
+                        ) : props.right ? props.right : <></>
                     }
                     mode={props.mode}
                     outlineColor={props.outlineColor}
+                    editable={props.editable}
+                    pointerEvents={props.pointerEvents}
                 />
             </View>
             {shouldShowErrorText(props.errorText) && (

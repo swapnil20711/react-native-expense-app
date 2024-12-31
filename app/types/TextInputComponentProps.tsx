@@ -5,6 +5,7 @@ import { TextInputLabelProp } from "react-native-paper/lib/typescript/components
 export type TextInputComponentProps = {
     label?: TextInputLabelProp | undefined
     isRequired?: boolean
+    editable?:boolean
     value: string | undefined
     placeholder: string | undefined
     errorText?: string | null
@@ -20,4 +21,6 @@ export type TextInputComponentProps = {
     mode?: 'flat' | 'outlined' | undefined
     style?: object | undefined
     outlineColor:string
+    pointerEvents?:'box-none' | 'none' | 'box-only' | 'auto' | undefined
+    right?:React.ReactNode
 }
