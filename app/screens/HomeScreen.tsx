@@ -8,6 +8,9 @@ import ExpenseCardView from '../components/ExpenseCardView'
 import { LineChart } from "react-native-gifted-charts";
 import { Colors } from '../colors'
 import useAccountStore from '../hooks/useAccountStore'
+import { database } from '../database/database'
+import { getAllTransactions, saveTransactionToDB } from '../database/helpers'
+import { Transaction } from '../types/Transaction'
 
 
 const HomeScreen = () => {
@@ -15,6 +18,15 @@ const HomeScreen = () => {
   const screenHeight = Dimensions.get('window').height;
   const data = [{ value: 10 }, { value: 10 }, { value: 10 }, { value: 20 }, { value: 30 }, { value: 20 }, { value: 70 }, { value: 20 }, { value: 15 }, { value: 15 }]
   const { balance, income, expenses } = useAccountStore();
+  useEffect(() => {
+    getAllTransactions().then((res) => {
+      console.log(res[0]._raw)
+    }).catch((error) => {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
+    })
+  })
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <LinearGradient
