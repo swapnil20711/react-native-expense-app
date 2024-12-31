@@ -1,9 +1,11 @@
 import { View, Text, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Colors } from '../colors'
 import DropDown from '../components/Dropdown';
 import DropDownData from '../types/DropdownData';
 import TextInputComponent from '../components/TextInputComponent';
+import { Transaction } from '../types/Transaction';
+import { saveTransactionToDB } from '../database/helpers';
 
 const AddIncomeScreen = () => {
     const [income, setIncome] = useState('');
@@ -21,6 +23,10 @@ const AddIncomeScreen = () => {
     ];
     const [category, setCategory] = useState<DropDownData | null>(null)
     const [description, setDescription] = useState('')
+    useEffect(() => {
+        const t: Transaction = { amount: 2000, description: "Testing watermelon db.",expenseType:"income",category:"Salary"}
+        saveTransactionToDB(t)
+    }, [])
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 0.3, backgroundColor: Colors.green }}>

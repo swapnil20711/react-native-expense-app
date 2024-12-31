@@ -1,4 +1,4 @@
-import { Dimensions, Image, View } from 'react-native'
+import { Dimensions, View } from 'react-native'
 import React, { useEffect } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import HomeAppBar from '../components/HomeAppBar'
@@ -8,25 +8,38 @@ import ExpenseCardView from '../components/ExpenseCardView'
 import { LineChart } from "react-native-gifted-charts";
 import { Colors } from '../colors'
 import useAccountStore from '../hooks/useAccountStore'
-import { database } from '../database/database'
-import { getAllTransactions, saveTransactionToDB } from '../database/helpers'
-import { Transaction } from '../types/Transaction'
+import { getTotalAmount } from '../database/helpers'
 
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const screenHeight = Dimensions.get('window').height;
   const data = [{ value: 10 }, { value: 10 }, { value: 10 }, { value: 20 }, { value: 30 }, { value: 20 }, { value: 70 }, { value: 20 }, { value: 15 }, { value: 15 }]
-  const { balance, income, expenses } = useAccountStore();
-  useEffect(() => {
-    getAllTransactions().then((res) => {
-      console.log(res[0]._raw)
+  const { balance, income, expense, updateIncome } = useAccountStore();
+
+
+  const getTotalTransactionValue = (transactionType: string) => {
+    getTotalAmount(transactionType).then((totalAmount) => {
+      console.log(totalAmount);
+      if (transactionType === "income") {
+        updateIncome(totalAmount)
+      } else {
+        console.log('====================================');
+        console.log(totalAmount);
+        console.log('====================================');
+      }
     }).catch((error) => {
       console.log('====================================');
-      console.log(error);
+      console.log("error is: ", error);
       console.log('====================================');
     })
-  })
+  }
+
+  useEffect(() => {
+    getTotalTransactionValue("income")
+    getTotalTransactionValue("expense")
+  }, [])
+
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <LinearGradient
@@ -48,7 +61,7 @@ const HomeScreen = () => {
           </View>
           <View style={{ flexDirection: "row", height: "80%", justifyContent: "space-evenly" }}>
             <ExpenseCardView expenseType="income" cardBackgroundColor={Colors.green} title='Income' amount={income} />
-            <ExpenseCardView expenseType="expense" cardBackgroundColor={Colors.red} title='Expenses' amount={expenses} />
+            <ExpenseCardView expenseType="expense" cardBackgroundColor={Colors.red} title='Expenses' amount={expense} />
           </View>
         </View>
       </LinearGradient>

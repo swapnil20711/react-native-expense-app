@@ -28,3 +28,18 @@ export const getAllTransactions = async () => {
     .query(Q.sortBy("createdAt", Q.asc))
     .fetch();
 };
+
+export async function getTotalAmount(expenseType: string) {
+  const transactions = await database.collections
+    .get<Transaction>(constants.TRANSACTIONS_TABLE)
+    .query(
+      Q.where('expenseType', expenseType),
+      Q.sortBy('createdAt', Q.asc)
+    )
+    .fetch();
+
+  
+  const totalAmount = transactions.reduce((sum, transaction) => sum + transaction.amount, 0);
+
+  return totalAmount;
+}
