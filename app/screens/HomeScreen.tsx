@@ -15,7 +15,7 @@ const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const screenHeight = Dimensions.get('window').height;
   const data = [{ value: 10 }, { value: 10 }, { value: 10 }, { value: 20 }, { value: 30 }, { value: 20 }, { value: 70 }, { value: 20 }, { value: 15 }, { value: 15 }]
-  const { balance, income, expense, updateIncome } = useAccountStore();
+  const { balance, income, expense, updateIncome ,updateExpense} = useAccountStore();
 
 
   const getTotalTransactionValue = (transactionType: string) => {
@@ -24,6 +24,7 @@ const HomeScreen = () => {
       if (transactionType === "income") {
         updateIncome(totalAmount)
       } else {
+        updateExpense(totalAmount)
         console.log('====================================');
         console.log(totalAmount);
         console.log('====================================');

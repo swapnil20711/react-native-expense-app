@@ -7,7 +7,7 @@ type AccountStore = {
     expense: number;
     updateBalance: (newBalance: number) => void
     updateIncome: (income: number) => void
-    updateExpense : (expense:number)=>void
+    updateExpense: (expense: number) => void
 }
 const useAccountStore = create<AccountStore>((set) => ({
     balance: 0,
@@ -15,7 +15,7 @@ const useAccountStore = create<AccountStore>((set) => ({
     expense: 0,
     updateBalance: (newBalance: number) => set({ balance: newBalance }),
     updateIncome: (income: number) => set({ income: income }),
-    updateExpense : (expense:number)=>set({expense:expense})
+    updateExpense: (expense: number) => set({ expense: expense })
 }));
 
 export default useAccountStore;
