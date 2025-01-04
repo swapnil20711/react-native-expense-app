@@ -6,6 +6,7 @@ import SignupScreen from '../screens/SignupScreen';
 import AppHeader from '../components/AppHeader';
 import SetupPinScreen from '../screens/SetupPinScreen';
 import { Routes } from '../screens';
+import withSafeArea from '../components/withSafeArea';
 
 const AuthStack = () => {
     const Stack = createNativeStackNavigator();
@@ -13,7 +14,7 @@ const AuthStack = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={Routes.OnboardingScreen.toString()}>
             <Stack.Screen name={Routes.OnboardingScreen.toString()} component={OnboardingScreen} />
-            <Stack.Screen name={Routes.SetupPinScreen.toString()} component={SetupPinScreen}/>
+            <Stack.Screen name={Routes.SetupPinScreen.toString()} component={withSafeArea(SetupPinScreen)}/>
             <Stack.Screen name={Routes.LoginScreen.toString()} component={LoginScreen}
                 options={({ navigation }) => ({
                     headerShown: true,

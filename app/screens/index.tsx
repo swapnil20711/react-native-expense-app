@@ -19,4 +19,5 @@ export const screensWithSafeArea = [
     Routes.TransactionScreen,
     Routes.BudgetScreen,
     Routes.ProfileScreen,
+    Routes.SetupPinScreen
 ]

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Dimensions, TouchableOpacity, Platform } from 'react-native'
+import { View, Text, FlatList, Dimensions, TouchableOpacity, Platform, Alert } from 'react-native'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Colors } from '../colors';
 
@@ -20,6 +20,9 @@ const SetupPinScreen = () => {
                     setPin((prevPin) => (prevPin.length < 4 ? prevPin + item.toString() : prevPin));
                 }
             } else if (item === '→') {
+                if(pin.length===4){
+                 Alert.alert("You PIN is : ",pin)   
+                }
                 console.log('PIN entered:', pin);
             }
         },

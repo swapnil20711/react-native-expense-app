@@ -1,5 +1,5 @@
 import { Dimensions, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import HomeAppBar from '../components/HomeAppBar'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -9,13 +9,14 @@ import { LineChart } from "react-native-gifted-charts";
 import { Colors } from '../colors'
 import useAccountStore from '../hooks/useAccountStore'
 import { getTotalAmount } from '../database/helpers'
+import { useFocusEffect } from '@react-navigation/native'
 
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const screenHeight = Dimensions.get('window').height;
   const data = [{ value: 10 }, { value: 10 }, { value: 10 }, { value: 20 }, { value: 30 }, { value: 20 }, { value: 70 }, { value: 20 }, { value: 15 }, { value: 15 }]
-  const { balance, income, expense, updateIncome ,updateExpense} = useAccountStore();
+  const { balance, income, expense, updateIncome, updateExpense } = useAccountStore();
 
 
   const getTotalTransactionValue = (transactionType: string) => {
@@ -36,10 +37,20 @@ const HomeScreen = () => {
     })
   }
 
-  useEffect(() => {
+  const fetchIncomeAndExpenses = () => {
     getTotalTransactionValue("income")
     getTotalTransactionValue("expense")
-  }, [])
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // Do something when the screen is focused
+      fetchIncomeAndExpenses();
+      return () => {
+        
+      };
+    }, [])
+  );
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
