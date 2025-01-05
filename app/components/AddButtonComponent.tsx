@@ -47,6 +47,7 @@ const AddButtonComponent = () => {
                             alignItems: "center",
                         }}
                         onPress={() => {
+                            setShowIcons(false)
                             navigation.navigate(Routes.AddTransactionScreen,{expenseType:"income",title:"Income"})
                         }}
                     >
@@ -76,6 +77,7 @@ const AddButtonComponent = () => {
                             alignItems: "center",
                         }}
                         onPress={() => {
+                            setShowIcons(false)
                             navigation.navigate(Routes.AddTransactionScreen,{expenseType:"expense",title:"Expense"})
                         }}
                     >

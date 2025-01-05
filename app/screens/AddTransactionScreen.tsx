@@ -48,10 +48,10 @@ const AddTransactionScreen = ({ route }: AddTransactionScreenProps): React.JSX.E
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 0.3, backgroundColor: expenseType === "income" ? Colors.green : Colors.red }}>
-                <View style={{ marginTop: "20%", marginStart: 28 }}>
+                <View style={{position: "absolute", bottom: '16%', end: 0, start: 28}}>
                     <Text style={{ color: "#FCFCFC", opacity: 0.64, fontSize: 18, fontWeight: "bold" }}>How much?</Text>
-                    <View style={{ flexDirection: "row", marginTop: 12 }}>
-                        <Text style={{ color: "#fff", fontSize: 44 }}>₹</Text>
+                    <View style={{ flexDirection: "row" }}>
+                        <Text style={{ color: "#fff", fontSize: 34, textAlignVertical: "center" }}>₹</Text>
                         <Controller
                             control={control}
                             name="amount"
@@ -70,7 +70,7 @@ const AddTransactionScreen = ({ route }: AddTransactionScreenProps): React.JSX.E
                                         inputMode='numeric'
                                         autoFocus
                                         returnKeyType="done"
-                                        style={{ backgroundColor: "transparent", flex: 1, fontSize: 44, color: "white" }} />
+                                        style={{ backgroundColor: "transparent", flex: 1, fontSize: 34, color: "white" }} />
                                 )
                             }
                             }
@@ -79,7 +79,7 @@ const AddTransactionScreen = ({ route }: AddTransactionScreenProps): React.JSX.E
                     <Text style={{ color: '#fff', fontWeight: "bold" }}>{errors.amount?.message as string}</Text>
                 </View>
             </View>
-            <View style={{ borderTopStartRadius: 32, borderTopEndRadius: 32, backgroundColor: "white", position: "absolute", left: 0, right: 0, top: "26%", bottom: 0 }}>
+            <View style={{ borderTopStartRadius: 32, borderTopEndRadius: 32, backgroundColor: "white", position: "absolute", left: 0, right: 0, bottom: 0,top:'26%' }}>
                 <View style={{ marginHorizontal: 16, marginTop: 28 }}>
                     <Controller
                         name="category"
