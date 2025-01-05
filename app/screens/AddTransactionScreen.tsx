@@ -34,7 +34,7 @@ const AddTransactionScreen = ({ route }: AddTransactionScreenProps): React.JSX.E
     });
 
     const onSubmit = (data: any) => {
-        const t: Transaction = { amount: data.amount, description: data.description, expenseType: expenseType, category: data.category }
+        const t: Transaction = { amount: data.amount, description: data.description, expenseType: expenseType, category: data.category.name }
         saveTransactionToDB(t)
             .then(() => {
                 navigation.goBack();
