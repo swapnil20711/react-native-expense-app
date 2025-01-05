@@ -80,6 +80,7 @@ const TextInputComponent: FC<TextInputComponentProps> = (props) => {
                     outlineColor={props.outlineColor}
                     editable={props.editable}
                     pointerEvents={props.pointerEvents}
+                    onBlur={props.onBlur}
                 />
             </View>
             {shouldShowErrorText(props.errorText) && (

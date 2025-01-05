@@ -34,14 +34,14 @@ function App(): React.JSX.Element {
             <Stack.Screen name='Splash' component={SplashScreen} options={{ headerShown: false }} />
             <Stack.Screen name='MainApp' component={TabNavigation} options={{ headerShown: false }} />
             <Stack.Screen name='AuthStack' component={AuthStack} options={{ headerShown: false }} />
-            <Stack.Screen name={Routes.IncomeScreen.toString()} component={AddIncomeScreen}
-              options={({ navigation }) => ({
+            <Stack.Screen name={Routes.IncomeScreen} component={AddIncomeScreen}
+              options={({ navigation, route }: any) => ({
                 headerShown: true,
                 header: () => (
                   <AppHeader
                     navigation={navigation}
-                    title={'Income'}
-                    color={Colors.green}
+                    title={route.params?.title}
+                    color={route.params?.expenseType === "income" ? Colors.green : Colors.red}
                     iconAndTextColor='#fff' />
                 ),
               })} />

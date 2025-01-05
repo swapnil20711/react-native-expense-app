@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, TouchableOpacity, View } from 'react-native'
-import { Dialog, Divider, List, Portal, Text, TextInput } from 'react-native-paper'
+import { Dialog, Divider, Icon, List, Portal, Text, TextInput } from 'react-native-paper'
 import DropDownViewProps from '../types/DropDownViewProps'
 import { Colors } from '../colors'
 import TextInputComponent from './TextInputComponent'
@@ -11,6 +11,12 @@ const Dropdown = (props: DropDownViewProps) => {
         }
     }, [props.data])
     const [isDialogShown, setIsDialogShown] = useState(false)
+
+    useEffect(() => {
+        console.log('====================================');
+        console.log("isDialogShown : ", isDialogShown);
+        console.log('====================================');
+    }, [isDialogShown])
     return (
         <View style={props.containerStyle}>
             <TouchableOpacity
@@ -26,6 +32,7 @@ const Dropdown = (props: DropDownViewProps) => {
                     label={props.label}
                     editable={false}
                     pointerEvents="none"
+                    errorText={props.error}
                     right={
                         <TextInput.Icon
                             onPress={() => {
@@ -40,12 +47,14 @@ const Dropdown = (props: DropDownViewProps) => {
             </TouchableOpacity>
             <Portal>
                 <Dialog
-                    onDismiss={() => {
-                        setIsDialogShown(false)
-                    }}
                     visible={isDialogShown}
-                    style={{ backgroundColor: "white" }}
+                    style={{ backgroundColor: "white", padding: 8, overflow: "hidden" }}
                 >
+                    <TouchableOpacity onPress={() => {
+                        setIsDialogShown(!isDialogShown)
+                    }} style={{ alignItems: "flex-end", marginEnd: 16, position: "absolute", right: 0, top: 0 }}>
+                        <Icon size={28} source={"close"} />
+                    </TouchableOpacity>
                     <Dialog.Title>
                         {props.label}
                     </Dialog.Title>

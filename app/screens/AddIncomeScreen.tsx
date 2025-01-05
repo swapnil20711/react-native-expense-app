@@ -1,76 +1,128 @@
 import { View, Text, TextInput } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Colors } from '../colors'
 import DropDown from '../components/Dropdown';
 import DropDownData from '../types/DropdownData';
 import TextInputComponent from '../components/TextInputComponent';
 import { Transaction } from '../types/Transaction';
 import { saveTransactionToDB } from '../database/helpers';
+import { Button } from 'react-native-paper';
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from 'react-hook-form';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { AddIncomeScreenProps } from '../types/AddIncomeScreenProps';
+import { expense, income } from '../constants/sources.json'
 
-const AddIncomeScreen = () => {
-    const [income, setIncome] = useState('');
-    const incomeSources: DropDownData[] = [
-        { name: "Salary", id: "1" },
-        { name: "Stock Dividends", id: "2" },
-        { name: "Freelance/Contract Work", id: "3" },
-        { name: "Rental Income", id: "4" },
-        { name: "Interest Income", id: "5" },
-        { name: "Bonus/Commission", id: "6" },
-        { name: "Gift Money", id: "7" },
-        { name: "Investment Income", id: "8" },
-        { name: "Side Business Income", id: "9" },
-        { name: "Others", id: "10" }
-    ];
-    const [category, setCategory] = useState<DropDownData | null>(null)
-    const [description, setDescription] = useState('')
-    useEffect(() => {
-        const t: Transaction = { amount: 2000, description: "Testing watermelon db.",expenseType:"income",category:"Salary"}
+const AddIncomeScreen = ({ route }: AddIncomeScreenProps): React.JSX.Element => {
+    const expenseType = route.params?.expenseType;
+    const sources: DropDownData[] = route.params.expenseType === "income" ? income : expense
+    const schema = z.object({
+        amount: z.number().min(1, { message: "Amount must be greater than 1" }),
+        category: z.object({ id: z.string(), name: z.string() }),
+        description: z.string().min(10)
+    })
+
+    const navigation = useNavigation();
+
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: zodResolver(schema),
+    });
+
+    const onSubmit = (data: any) => {
+        const t: Transaction = { amount: data.amount, description: data.description, expenseType: expenseType, category: data.category }
         saveTransactionToDB(t)
-    }, [])
+            .then(() => {
+                navigation.goBack();
+            }).catch((error) => {
+                console.log('====================================');
+                console.log("error is : ", error);
+                console.log('====================================');
+            })
+    }
+
     return (
         <View style={{ flex: 1 }}>
-            <View style={{ flex: 0.3, backgroundColor: Colors.green }}>
-                <View style={{ marginTop: "24%", marginStart: 28 }}>
+            <View style={{ flex: 0.3, backgroundColor: expenseType === "income" ? Colors.green : Colors.red }}>
+                <View style={{ marginTop: "20%", marginStart: 28 }}>
                     <Text style={{ color: "#FCFCFC", opacity: 0.64, fontSize: 18, fontWeight: "bold" }}>How much?</Text>
-                    <View style={{ flexDirection: "row", marginTop: 12, marginBottom: 16 }}>
+                    <View style={{ flexDirection: "row", marginTop: 12 }}>
                         <Text style={{ color: "#fff", fontSize: 44 }}>₹</Text>
-                        <TextInput
-                            value={income}
-                            numberOfLines={2}
-                            onChangeText={(text) => {
-                                setIncome(text)
-                            }}
-                            placeholderTextColor={"#FCFCFC40"}
-                            placeholder='2000'
-                            inputMode='numeric'
-                            autoFocus
-                            returnKeyType="done"
-                            style={{ backgroundColor: "transparent", flex: 1, fontSize: 44, color: "white" }} />
+                        <Controller
+                            control={control}
+                            name="amount"
+                            render={(
+                                { field: { onChange, onBlur, value } }) => {
+                                return (
+                                    <TextInput
+                                        value={value}
+                                        numberOfLines={2}
+                                        onChangeText={(text) => {
+                                            onChange(Number(text))
+                                        }}
+                                        onBlur={onBlur}
+                                        placeholderTextColor={"#FCFCFC40"}
+                                        placeholder='2000'
+                                        inputMode='numeric'
+                                        autoFocus
+                                        returnKeyType="done"
+                                        style={{ backgroundColor: "transparent", flex: 1, fontSize: 44, color: "white" }} />
+                                )
+                            }
+                            }
+                        ></Controller>
                     </View>
+                    <Text style={{ color: '#fff', fontWeight: "bold" }}>{errors.amount?.message as string}</Text>
                 </View>
             </View>
             <View style={{ borderTopStartRadius: 32, borderTopEndRadius: 32, backgroundColor: "white", position: "absolute", left: 0, right: 0, top: "26%", bottom: 0 }}>
                 <View style={{ marginHorizontal: 16, marginTop: 28 }}>
-                    <DropDown
-                        data={incomeSources}
-                        label={'Category'}
-                        onSelect={function (item: DropDownData): void {
-                            setCategory(item)
-                        }}
-                        selectedOption={category} />
+                    <Controller
+                        name="category"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <DropDown
+                                data={sources}
+                                label="Category"
+                                selectedOption={value}
+                                onSelect={(item: DropDownData) => onChange(item)}
+                                error={errors.category?.message as string}
+                            />
+                        )}>
 
-                    <TextInputComponent
-                        mode='outlined'
-                        style={{ marginTop: 16 }}
-                        outlineStyle={{ borderRadius: 16 }}
-                        value={description}
-                        onChangeText={(text) => {
-                            setDescription(text)
+                    </Controller>
+
+                    <Controller
+                        control={control}
+                        name="description"
+                        render={({ field: { onChange, onBlur, value } }) => {
+                            return (
+                                <TextInputComponent
+                                    mode='outlined'
+                                    style={{ marginTop: 16 }}
+                                    outlineStyle={{ borderRadius: 16 }}
+                                    value={value}
+                                    onChangeText={onChange}
+                                    onBlur={onBlur}
+                                    label={"Description"}
+                                    placeholder={''}
+                                    inputMode={"text"}
+                                    outlineColor={'#F1F1FA'}
+                                    errorText={errors.description?.message as string}
+                                />
+                            )
                         }}
-                        label={"Description"}
-                        placeholder={''}
-                        inputMode={"text"}
-                        outlineColor={'#F1F1FA'} />
+                    />
+
+                    <Button
+                        onPress={handleSubmit(onSubmit)}
+                        mode='contained'
+                        style={{ marginTop: 30, borderRadius: 14, backgroundColor: Colors.primaryColor }}>Continue</Button>
                 </View>
             </View>
         </View>

@@ -21,14 +21,10 @@ const HomeScreen = () => {
 
   const getTotalTransactionValue = (transactionType: string) => {
     getTotalAmount(transactionType).then((totalAmount) => {
-      console.log(totalAmount);
       if (transactionType === "income") {
         updateIncome(totalAmount)
       } else {
         updateExpense(totalAmount)
-        console.log('====================================');
-        console.log(totalAmount);
-        console.log('====================================');
       }
     }).catch((error) => {
       console.log('====================================');
@@ -68,7 +64,7 @@ const HomeScreen = () => {
           <View style={{ marginTop: 16, marginStart: 60, marginEnd: 40 }}>
             <View style={{ alignItems: 'center' }}>
               <Text style={{ color: "#91919F", fontSize: 16, marginStart: 8 }}>Account Balance</Text>
-              <Text style={{ fontSize: 28 }}>₹{balance}</Text>
+              <Text style={{ fontSize: 28 }}>₹{income-expense}</Text>
             </View>
           </View>
           <View style={{ flexDirection: "row", height: "80%", justifyContent: "space-evenly" }}>

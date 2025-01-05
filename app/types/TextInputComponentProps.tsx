@@ -1,4 +1,4 @@
-import { InputModeOptions, StyleProp, ViewStyle } from "react-native"
+import { InputModeOptions, NativeSyntheticEvent, StyleProp, TextInputFocusEventData, ViewStyle } from "react-native"
 import { Country } from "react-native-country-picker-modal"
 import { TextInputLabelProp } from "react-native-paper/lib/typescript/components/TextInput/types"
 
@@ -17,6 +17,7 @@ export type TextInputComponentProps = {
     multiline?: boolean
     onChangeText?: (text: string) => void
     onCountrySelect?: (country: Country) => void
+    onBlur?:(((e: NativeSyntheticEvent<TextInputFocusEventData>) => void) & ((args: any) => void)) | undefined
     selectedCountry?: string
     mode?: 'flat' | 'outlined' | undefined
     style?: object | undefined

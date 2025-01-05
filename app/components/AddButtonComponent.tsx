@@ -47,7 +47,7 @@ const AddButtonComponent = () => {
                             alignItems: "center",
                         }}
                         onPress={() => {
-                            navigation.navigate(Routes.IncomeScreen)
+                            navigation.navigate(Routes.IncomeScreen,{expenseType:"income",title:"Income"})
                         }}
                     >
                         <Icon size={32} source={require("../assets/income.png")} color="#fff" />
@@ -76,7 +76,7 @@ const AddButtonComponent = () => {
                             alignItems: "center",
                         }}
                         onPress={() => {
-                            navigation.navigate(Routes.ExpenseScreen)
+                            navigation.navigate(Routes.IncomeScreen,{expenseType:"expense",title:"Expense"})
                         }}
                     >
                         <Icon size={32} source={require("../assets/expense.png")} color="#fff" />

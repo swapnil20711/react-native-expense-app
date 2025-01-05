@@ -1,0 +1,28 @@
+{
+    "income": [
+      { "name": "Salary", "id": "1" },
+      { "name": "Stock Dividends", "id": "2" },
+      { "name": "Freelance/Contract Work", "id": "3" },
+      { "name": "Rental Income", "id": "4" },
+      { "name": "Interest Income", "id": "5" },
+      { "name": "Bonus/Commission", "id": "6" },
+      { "name": "Gift Money", "id": "7" },
+      { "name": "Investment Income", "id": "8" },
+      { "name": "Side Business Income", "id": "9" },
+      { "name": "Others", "id": "10" }
+    ],
+    "expense": [
+      { "name": "Rent", "id": "1" },
+      { "name": "Utilities", "id": "2" },
+      { "name": "Groceries", "id": "3" },
+      { "name": "Transportation", "id": "4" },
+      { "name": "Healthcare", "id": "5" },
+      { "name": "Insurance", "id": "6" },
+      { "name": "Entertainment", "id": "7" },
+      { "name": "Dining Out", "id": "8" },
+      { "name": "Education", "id": "9" },
+      { "name": "Travel", "id": "10" },
+      { "name": "Others", "id": "11" }
+    ]
+  }
+  

@@ -8,4 +8,5 @@ export default interface DropDownViewProps extends PropsWithChildren {
     onSelect: (item: DropDownData) => void
     containerStyle?: ViewStyle
     selectedOption: DropDownData | null | undefined
+    error: string | null | undefined
 }
