@@ -10,7 +10,7 @@ export const enum Routes {
     SignupScreen = "Signup",
     SplashScreen = "Splash",
     ExpenseScreen = "Expense",
-    IncomeScreen = "Income",
+    AddTransactionScreen = "AddTransaction",
 }
 
 export const screensWithSafeArea = [

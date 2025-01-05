@@ -8,7 +8,6 @@
 import React from 'react';
 import {
   KeyboardAvoidingView,
-  SafeAreaView,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -17,9 +16,8 @@ import AuthStack from './app/navigation/AuthStack';
 import TabNavigation from './app/navigation/TabNavigation';
 import { Routes } from './app/screens';
 import AppHeader from './app/components/AppHeader';
-import AddExpenseScreen from './app/screens/AddExpenseScreen';
 import { Colors } from './app/colors';
-import AddIncomeScreen from './app/screens/AddIncomeScreen';
+import AddTransactionScreen from './app/screens/AddTransactionScreen';
 import { PaperProvider } from 'react-native-paper';
 
 
@@ -34,7 +32,7 @@ function App(): React.JSX.Element {
             <Stack.Screen name='Splash' component={SplashScreen} options={{ headerShown: false }} />
             <Stack.Screen name='MainApp' component={TabNavigation} options={{ headerShown: false }} />
             <Stack.Screen name='AuthStack' component={AuthStack} options={{ headerShown: false }} />
-            <Stack.Screen name={Routes.IncomeScreen} component={AddIncomeScreen}
+            <Stack.Screen name={Routes.AddTransactionScreen} component={AddTransactionScreen}
               options={({ navigation, route }: any) => ({
                 headerShown: true,
                 header: () => (
@@ -42,17 +40,6 @@ function App(): React.JSX.Element {
                     navigation={navigation}
                     title={route.params?.title}
                     color={route.params?.expenseType === "income" ? Colors.green : Colors.red}
-                    iconAndTextColor='#fff' />
-                ),
-              })} />
-            <Stack.Screen name={Routes.ExpenseScreen.toString()} component={AddExpenseScreen}
-              options={({ navigation }) => ({
-                headerShown: true,
-                header: () => (
-                  <AppHeader
-                    navigation={navigation}
-                    title={'Expense'}
-                    color={Colors.red}
                     iconAndTextColor='#fff' />
                 ),
               })} />

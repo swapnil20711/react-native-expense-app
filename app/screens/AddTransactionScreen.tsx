@@ -10,12 +10,11 @@ import { Button } from 'react-native-paper';
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from 'react-hook-form';
-import { ParamListBase, useNavigation } from '@react-navigation/native';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { AddIncomeScreenProps } from '../types/AddIncomeScreenProps';
+import { useNavigation } from '@react-navigation/native';
+import { AddTransactionScreenProps } from '../types/AddTransactionScreenProps';
 import { expense, income } from '../constants/sources.json'
 
-const AddIncomeScreen = ({ route }: AddIncomeScreenProps): React.JSX.Element => {
+const AddTransactionScreen = ({ route }: AddTransactionScreenProps): React.JSX.Element => {
     const expenseType = route.params?.expenseType;
     const sources: DropDownData[] = route.params.expenseType === "income" ? income : expense
     const schema = z.object({
@@ -129,4 +128,4 @@ const AddIncomeScreen = ({ route }: AddIncomeScreenProps): React.JSX.Element => 
     )
 }
 
-export default AddIncomeScreen
+export default AddTransactionScreen

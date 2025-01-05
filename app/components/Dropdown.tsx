@@ -11,12 +11,6 @@ const Dropdown = (props: DropDownViewProps) => {
         }
     }, [props.data])
     const [isDialogShown, setIsDialogShown] = useState(false)
-
-    useEffect(() => {
-        console.log('====================================');
-        console.log("isDialogShown : ", isDialogShown);
-        console.log('====================================');
-    }, [isDialogShown])
     return (
         <View style={props.containerStyle}>
             <TouchableOpacity
@@ -48,7 +42,7 @@ const Dropdown = (props: DropDownViewProps) => {
             <Portal>
                 <Dialog
                     visible={isDialogShown}
-                    style={{ backgroundColor: "white", padding: 8, overflow: "hidden" }}
+                    style={{ backgroundColor: "white", padding: 8 }}
                 >
                     <TouchableOpacity onPress={() => {
                         setIsDialogShown(!isDialogShown)
