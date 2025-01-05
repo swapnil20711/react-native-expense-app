@@ -7,7 +7,7 @@ const ScreenWithSafeAreaView: React.FC<ScreenWithSafeAreaViewProps> = (props: Sc
     const insets = useSafeAreaInsets();
     return (
         props.hasSafeAreaView ?
-            <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }}>
+            <View style={{ flex: 1, paddingTop: insets.top }}>
                 {props.children}
             </View> :
             props.children

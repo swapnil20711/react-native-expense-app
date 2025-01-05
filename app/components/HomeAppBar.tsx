@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Avatar, Text } from 'react-native-paper';
 import { Colors } from '../colors';
@@ -11,12 +11,14 @@ const HomeAppBar = () => {
             <View style={styles.avatarContainerStyle}>
                 <Avatar.Image source={{ uri: "https://avatars.githubusercontent.com/u/53923373?v=4" }} size={32} />
             </View>
+            <TouchableOpacity style={{flex:1}}>
             <View style={styles.centerContainerStyle}>
                 <View style={styles.monthTextContainerStyle}>
                     <Image source={require("../assets/arrow_down.png")} style={{ width: 32, height: 32 }}></Image>
                     <Text style={styles.monthTextStyle}>October</Text>
                 </View>
             </View>
+            </TouchableOpacity>
             <Icon size={24} color={Colors.primaryColor} name='notifications' />
         </View>
     )

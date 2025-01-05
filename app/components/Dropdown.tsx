@@ -42,7 +42,7 @@ const Dropdown = (props: DropDownViewProps) => {
             <Portal>
                 <Dialog
                     visible={isDialogShown}
-                    style={{ backgroundColor: "white", padding: 8 }}
+                    style={{ backgroundColor: "white", padding: 8,overflow:"hidden" }}
                 >
                     <TouchableOpacity onPress={() => {
                         setIsDialogShown(!isDialogShown)
